@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:growcery_app/data.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key, required this.product});
   final Product product;
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  int count = 1;
+
+  void addCount() {
+    count = count + 1;
+    setState(() {});
+  }
+
+  void removeCount() {
+    if (count != 0) {
+      count = count - 1;
+    }
+    ;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +60,18 @@ class ProductDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            product.name,
+            widget.product.name,
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 50),
           ),
           Center(
             child: Hero(
-              tag: product.image,
+              tag: widget.product.image,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.45,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(product.image), fit: BoxFit.contain)),
+                        image: AssetImage(widget.product.image),
+                        fit: BoxFit.contain)),
               ),
             ),
           ),
@@ -60,14 +81,14 @@ class ProductDetail extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "Rp. ${product.price}",
+                  "Rp. ${widget.product.price}",
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                       color: Colors.green),
                 ),
                 Text(
-                  " / ${product.quantity}",
+                  " / ${widget.product.quantity}",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
@@ -81,7 +102,7 @@ class ProductDetail extends StatelessWidget {
               color: Colors.grey[200],
               padding: EdgeInsets.all(20),
               child: Text(
-                product.description,
+                widget.product.description,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
@@ -105,7 +126,7 @@ class ProductDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: removeCount,
                         icon: Icon(
                           Icons.remove_circle_outline,
                           color: Colors.white,
@@ -113,14 +134,14 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "1",
-                        style: TextStyle(
+                        count.toString(),
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.w700),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: addCount,
                         icon: Icon(
                           Icons.add_circle_outline,
                           color: Colors.white,
@@ -128,6 +149,26 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    width: 190,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(25),
+                        ),
+                        color: Colors.green),
+                    child: Center(
+                      child: Text(
+                        "Pesan",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
                   ),
                 )
               ],
