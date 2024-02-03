@@ -158,9 +158,9 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Row(
                         children: [
                           Icon(
@@ -180,7 +180,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 8,
                       ),
                       Row(
