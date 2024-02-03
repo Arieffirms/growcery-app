@@ -25,6 +25,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final data = Product("bayam", '2.000', '1likat', 'assets/img1.png', 'secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin')
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +80,23 @@ class _MainPageState extends State<MainPage> {
             ],
           )
         ],
+      ),
+      body: Container(
+        padding: EdgeInsets.all(10),
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: [
+            Card(
+              elevation: 2,
+              shadowColor: Colors.green,
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            Card(),
+          ],
+        ),
       ),
     );
   }
